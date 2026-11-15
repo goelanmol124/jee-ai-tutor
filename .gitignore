@@ -1,0 +1,55 @@
+# ---- Secrets -------------------------------------------------------------
+.env
+.env.*
+!.env.example
+.dev.vars
+*.pem
+credentials*.json
+token*.json
+
+# ---- Tooling / build output --------------------------------------------
+__pycache__/
+*.pyc
+.pytest_cache/
+node_modules/
+.venv/
+venv/
+dist/
+dist-ssr/
+.wrangler/
+*.log
+*.local
+.DS_Store
+.vscode/*
+!.vscode/extensions.json
+.idea/
+
+# ---- Exam content and derived data (may be copyrighted; never commit) ---
+# Official / third-party JEE papers, answer keys and video transcripts.
+jee-main-2026-archive/
+jee_mains_2026_transcripts/
+# Concept-graph build runs and snapshots built from that content.
+graph_runs/
+# Ground-truth extraction outputs (contain copied question text).
+ground_truth_heuristic/
+ground_truth_pipeline/
+# Prompt-iteration batches that embed real exam questions.
+scripts/grok_iterate/
+scripts/*.txt
+# Full graph bundle synced from a local snapshot (real exam questions).
+# The repo ships app/public/data/sample-graph.json (original questions) instead.
+app/public/data/graph.json
+app/public/data/graph.*.json
+
+# ---- Runtime data and scratch ------------------------------------------
+# Local SQLite stores (learner state, transcripts, pilot stores).
+app/data/
+*.sqlite
+*.sqlite-journal
+*.vectors.npy
+# Harness transcripts and scratch output.
+tmp/
+app/tmp/
+_tmp_*
+# Third-party research papers (PDF/XML full texts); summaries are committed.
+research/evidence/**/papers/
