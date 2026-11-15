@@ -1,0 +1,416 @@
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Inter:wght@400;500;600;700&display=swap');
+@import 'katex/dist/katex.min.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  /* Neutral warm white — reads like uncoated sheet stock, not gray screen chrome */
+  --paper: #FAFAF9;
+  --paper-sheet-light: rgba(255, 255, 255, 0.58);
+  /* Micro-grain: grayscale turbulence only, stitched tile — keeps hue steady for readability */
+  --paper-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='g' x='-35%25' y='-35%25' width='170%25' height='170%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='2' stitchTiles='stitch' result='n'/%3E%3CfeColorMatrix in='n' type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='0.048'/%3E%3C/svg%3E");
+  --ink: #1B1F2A;
+  /* App safe-area insets so sticky CTA never hides under iOS home bar */
+  /* Sticky-CTA height varies by mode (read/capture/live). 76px was tuned for the
+     old single-row CTA. The conversational live mode is taller (chip strip + chat
+     input), so we let .solve-screen[data-cta-mode="live"] override below. */
+  --solve-cta-h: 76px;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 17px;          /* was 16px default — bumps EVERYTHING up one hair for readability */
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+}
+
+/* Matte sheet + diffuse light + imperceptible-scale grain (no lines; grain sits behind all text) */
+.paper-bg {
+  background-color: var(--paper);
+  background-image:
+    var(--paper-grain),
+    radial-gradient(
+      ellipse 115% 62% at 50% -18%,
+      var(--paper-sheet-light),
+      transparent 54%
+    );
+  background-repeat: repeat, no-repeat;
+  background-size: 208px 208px, auto;
+  /* Soft-light keeps specks from reading as gray dirt on warm paper */
+  background-blend-mode: soft-light, normal;
+}
+
+@media (prefers-contrast: more) {
+  .paper-bg {
+    background-image: radial-gradient(
+      ellipse 115% 62% at 50% -18%,
+      var(--paper-sheet-light),
+      transparent 54%
+    );
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-blend-mode: normal;
+  }
+}
+
+.navy-bg {
+  background-color: #0F172A;
+  background-image:
+    radial-gradient(at 30% 20%, rgba(107,79,160,0.12) 0px, transparent 50%),
+    radial-gradient(at 70% 80%, rgba(91,138,110,0.08) 0px, transparent 50%);
+}
+
+/* ─────────────────────────────────────────────
+   KaTeX size — bumped so math is readable on phone
+   ───────────────────────────────────────────── */
+.katex { font-size: 1.08em; }
+.question-math .katex { font-size: 1.22em; }
+.bubble-math .katex { font-size: 1.1em; }
+.option-math .katex { font-size: 1.04em; }
+
+/* LaTeX tabular rendered as HTML (KaTeX does not support tabular) */
+.latex-tabular {
+  border-collapse: collapse;
+  margin: 0.75rem 0;
+  font-size: 0.95em;
+  width: 100%;
+  max-width: 100%;
+}
+.latex-tabular td {
+  border: 1px solid rgba(27, 31, 42, 0.12);
+  padding: 0.45rem 0.6rem;
+  vertical-align: top;
+  font-family: 'Newsreader', Georgia, serif;
+}
+.latex-tabular .katex { font-size: 1em; }
+
+/* ─────────────────────────────────────────────
+   Solve view — chat-style, mobile-first
+   Reserves space at the bottom for the sticky CTA
+   so the last bubble never hides under it.
+   ───────────────────────────────────────────── */
+.solve-screen {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+.solve-thread {
+  padding-bottom: calc(var(--solve-cta-h) + env(safe-area-inset-bottom, 0px) + 24px);
+}
+
+/* Sticky bottom CTA — always-visible "what to do next" */
+.solve-cta {
+  position: sticky;
+  bottom: 0;
+  z-index: 30;
+  padding: 12px 16px calc(12px + env(safe-area-inset-bottom, 0px));
+  background: linear-gradient(to top, rgba(250,250,249,1) 70%, rgba(250,250,249,0));
+  backdrop-filter: blur(6px);
+}
+
+/* In conversational (live) mode the CTA grows to chip-strip + chat input. Reserve more
+   thread padding so the latest bubble is never hidden under it. ~152px covers a single
+   line of input + chips + safe area on most devices; auto-grows up to ~3 lines below. */
+.solve-screen[data-cta-mode="live"] {
+  --solve-cta-h: 152px;
+}
+
+/* Reply chat input — pill that the textarea grows inside. */
+.solve-reply-input {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  background: #fff;
+  border: 1px solid rgba(27,31,42,0.14);
+  border-radius: 22px;
+  padding: 8px 8px 8px 16px;
+  box-shadow: 0 1px 0 rgba(27,31,42,0.04), 0 0 0 0 rgba(124,58,237,0);
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+}
+.solve-reply-input:focus-within {
+  border-color: rgba(124,58,237,0.45);
+  box-shadow: 0 0 0 3px rgba(124,58,237,0.12);
+}
+.solve-reply-textarea {
+  flex: 1 1 auto;
+  resize: none;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--ink);
+  font-size: 15.5px;
+  line-height: 1.45;
+  font-family: 'Inter', system-ui, sans-serif;
+  max-height: 96px;
+  min-height: 22px;
+  padding: 4px 0;
+}
+.solve-reply-textarea::placeholder {
+  color: rgba(27,31,42,0.42);
+}
+.solve-reply-send {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  background: #6B4FA0;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background 0.15s ease, opacity 0.15s ease;
+}
+.solve-reply-send:hover:not(:disabled) {
+  background: #5B3F8E;
+}
+.solve-reply-send:disabled {
+  background: rgba(27,31,42,0.18);
+  cursor: not-allowed;
+}
+
+/* Soft pulse for the "Next question" chip when the coach signals conversationDone. */
+@keyframes pulse-soft {
+  0%   { box-shadow: 0 0 0 0   rgba(124,58,237,0.55); }
+  70%  { box-shadow: 0 0 0 10px rgba(124,58,237,0);   }
+  100% { box-shadow: 0 0 0 0   rgba(124,58,237,0);   }
+}
+.animate-pulse-soft {
+  animation: pulse-soft 2.2s ease-out infinite;
+}
+
+/* Chat bubbles. Coach = soft violet on the left.
+   Student = pale paper on the right. Always readable. */
+.bubble-coach {
+  background: #F4EFFA;
+  border: 1px solid rgba(107,79,160,0.18);
+  color: #1B1F2A;
+  border-radius: 22px 22px 22px 6px;
+  padding: 16px 18px;
+  font-size: 1.02rem;
+  line-height: 1.65;
+  max-width: min(680px, 96%);
+}
+.bubble-student {
+  background: #FFFFFF;
+  border: 1px solid rgba(27,31,42,0.10);
+  color: #1B1F2A;
+  border-radius: 22px 22px 6px 22px;
+  padding: 14px 16px;
+  font-size: 1rem;
+  line-height: 1.55;
+  max-width: min(620px, 92%);
+  margin-left: auto;
+}
+.bubble-system {
+  background: rgba(255,255,255,0.6);
+  border: 1px dashed rgba(27,31,42,0.18);
+  color: #2C3142;
+  border-radius: 14px;
+  padding: 10px 14px;
+  font-size: 0.9rem;
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Quick-check option pill — large tap target, calm color */
+.qc-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  text-align: left;
+  width: 100%;
+  background: #FFFFFF;
+  border: 1.5px solid rgba(27,31,42,0.12);
+  color: #1B1F2A;
+  border-radius: 16px;
+  padding: 14px 16px;
+  font-size: 1rem;
+  line-height: 1.45;
+  min-height: 56px;
+  transition: border-color 0.15s ease, background-color 0.15s ease, transform 0.05s ease;
+}
+.qc-option:hover { border-color: rgba(107,79,160,0.6); background: #FBF8FF; }
+.qc-option:active { transform: scale(0.99); }
+.qc-option[data-state="correct"]   { border-color: #5B8A6E; background: #EFF6F1; }
+.qc-option[data-state="incorrect"] { border-color: #C49B6F; background: #FBF3E7; }
+.qc-option[data-state="dimmed"]    { opacity: 0.45; cursor: default; }
+.qc-option[disabled]               { cursor: default; }
+
+/* Question pinned bar at top of Solve while attempting */
+.q-pin {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(250,250,249,0.95);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(27,31,42,0.08);
+}
+
+/* Big primary action buttons (How do you want to solve?) */
+.choice-tile {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 20px;
+  border-radius: 20px;
+  border: 1.5px solid rgba(27,31,42,0.12);
+  background: #FFFFFF;
+  font-size: 1.05rem;
+  line-height: 1.4;
+  text-align: left;
+  min-height: 72px;
+  transition: border-color 0.15s ease, transform 0.05s ease;
+}
+.choice-tile:hover { border-color: rgba(107,79,160,0.6); }
+.choice-tile:active { transform: scale(0.99); }
+.choice-tile .ico {
+  width: 44px; height: 44px;
+  border-radius: 14px;
+  background: #F1ECF7;
+  color: #6B4FA0;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Orient tile — visually highlighted as the lowest-friction lane.
+   Soft violet wash signals "safe / no commitment" without shouting. */
+.choice-tile--orient {
+  background: linear-gradient(180deg, #F8F4FF 0%, #FFFFFF 100%);
+  border-color: rgba(107,79,160,0.30);
+}
+.choice-tile--orient:hover { border-color: rgba(107,79,160,0.65); }
+.choice-tile .ico--orient {
+  background: #E8DEF8;
+  color: #5B3F8F;
+}
+
+/* MCQ option button — used in stage 0 */
+.mcq-option {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  text-align: left;
+  background: #FFFFFF;
+  border: 1.5px solid rgba(27,31,42,0.12);
+  color: #1B1F2A;
+  border-radius: 16px;
+  padding: 16px 18px;
+  font-size: 1.02rem;
+  line-height: 1.5;
+  min-height: 64px;
+  transition: border-color 0.15s ease, background-color 0.15s ease, transform 0.05s ease;
+}
+.mcq-option:hover { border-color: rgba(107,79,160,0.6); background: #FBF8FF; }
+.mcq-option:active { transform: scale(0.99); }
+.mcq-option[aria-pressed="true"] {
+  border-color: #6B4FA0;
+  background: #F4EFFA;
+  box-shadow: 0 0 0 3px rgba(107,79,160,0.12);
+}
+.mcq-option .marker {
+  width: 28px; height: 28px;
+  border-radius: 999px;
+  background: #F2F2F0;
+  color: #2C3142;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.85rem; font-weight: 600;
+  flex-shrink: 0;
+}
+.mcq-option[aria-pressed="true"] .marker {
+  background: #6B4FA0;
+  color: #FFFDF7;
+}
+
+/* Reset buttons */
+button { font-family: inherit; cursor: pointer; }
+
+/* Utility: caret blink for active step */
+.caret::after {
+  content: '';
+  display: inline-block;
+  width: 2px;
+  height: 1.1em;
+  background: #6B4FA0;
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  animation: caretBlink 1.05s steps(2) infinite;
+}
+@keyframes caretBlink {
+  to { background: transparent; }
+}
+
+/* Typing dots while coach is thinking */
+.typing-dots span {
+  display: inline-block;
+  width: 6px; height: 6px; margin: 0 2px;
+  background: #6B4FA0; border-radius: 50%;
+  opacity: 0.4;
+  animation: typingPulse 1.1s infinite ease-in-out;
+}
+.typing-dots span:nth-child(2) { animation-delay: 0.18s; }
+.typing-dots span:nth-child(3) { animation-delay: 0.36s; }
+@keyframes typingPulse {
+  0%, 80%, 100% { opacity: 0.3; transform: scale(0.95); }
+  40%           { opacity: 1.0; transform: scale(1.15); }
+}
+
+/* Star twinkle keyframe (extra) */
+@keyframes drift {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(2px, -2px); }
+}
+.drift { animation: drift 8s ease-in-out infinite; }
+
+/* Writing-area helper: same sheet treatment — no ruled lines */
+.notebook-rule {
+  background-color: var(--paper);
+  background-image:
+    var(--paper-grain),
+    radial-gradient(
+      ellipse 115% 62% at 50% -18%,
+      var(--paper-sheet-light),
+      transparent 54%
+    );
+  background-repeat: repeat, no-repeat;
+  background-size: 208px 208px, auto;
+  background-blend-mode: soft-light, normal;
+}
+
+@media (prefers-contrast: more) {
+  .notebook-rule {
+    background-image: radial-gradient(
+      ellipse 115% 62% at 50% -18%,
+      var(--paper-sheet-light),
+      transparent 54%
+    );
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-blend-mode: normal;
+  }
+}
+
+/* Scrollbar polish */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-thumb { background: rgba(27,31,42,0.15); border-radius: 8px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(27,31,42,0.25); }
+
+/* Prevent ugly focus rings, keep accessible */
+:focus-visible { outline: 2px solid #8B7AB8; outline-offset: 2px; border-radius: 4px; }
+button:focus-visible, a:focus-visible { outline-offset: 3px; }
