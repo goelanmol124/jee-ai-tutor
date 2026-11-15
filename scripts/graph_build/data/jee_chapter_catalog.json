@@ -1,0 +1,102 @@
+{
+  "catalog_version": 4,
+  "source_note": "Fine units (56) for term matching; coarse layer (~25) splits physical/organic/math further than v3 while keeping Physics at 6 EM/optics-style blocks. Chemistry: 5 physical bands + inorganic + 2 organic. Mathematics: 11 bands (P&C vs series, diff vs integral, 2D vs 3D+vectors, trig vs prob). Official refs: jeeadv.ac.in, jeemain.nta.ac.in.",
+  "coarse_index": {
+    "physics": [
+      "Mechanics & gravitation",
+      "Matter, fluids, oscillations & waves",
+      "Heat & thermodynamics",
+      "Electricity & magnetism",
+      "Optics",
+      "Modern physics & electronics"
+    ],
+    "chemistry": [
+      "Stoichiometry, atomic structure & bonding",
+      "States of matter & solutions",
+      "Thermodynamics & chemical equilibrium",
+      "Electrochemistry & chemical kinetics",
+      "Solid state & surface chemistry",
+      "Inorganic chemistry",
+      "Organic — principles, classification & hydrocarbons",
+      "Organic — functional groups to everyday life & biomolecules"
+    ],
+    "mathematics": [
+      "Sets, relations & functions",
+      "Complex numbers, quadratics, inequalities & induction",
+      "Matrices & determinants",
+      "Permutations, combinations & binomial theorem",
+      "Sequences & series",
+      "Differential calculus",
+      "Integral calculus & differential equations",
+      "Coordinate geometry — lines, circles & conics",
+      "Three-dimensional geometry & vectors",
+      "Trigonometry, inverse trig & heights/distances",
+      "Probability, statistics & mathematical reasoning"
+    ]
+  },
+  "subjects": {
+    "physics": [
+      {"name": "Units and Measurements", "coarse": "Mechanics & gravitation", "terms": ["unit", "dimension", "measurement", "error", "uncertainty", "significant figure", "parallax", "vernier", "screw gauge", "least count", "dimensional analysis"]},
+      {"name": "Kinematics", "coarse": "Mechanics & gravitation", "terms": ["kinematics", "projectile", "projectile motion", "uniform motion", "relative velocity", "equation of motion", "graph of motion"]},
+      {"name": "Laws of Motion", "coarse": "Mechanics & gravitation", "terms": ["newton law", "newton's law", "laws of motion", "friction", "constraint", "pulley", "free body diagram", "momentum collision", "impulse"]},
+      {"name": "Work, Energy and Power", "coarse": "Mechanics & gravitation", "terms": ["work energy", "power", "potential energy", "kinetic energy", "conservative", "non-conservative"]},
+      {"name": "Rotational Motion and Centre of Mass", "coarse": "Mechanics & gravitation", "terms": ["rotational motion", "torque", "angular momentum", "moment of inertia", "rolling", "rigid body", "centre of mass", "center of mass"]},
+      {"name": "Gravitation", "coarse": "Mechanics & gravitation", "terms": ["gravitation", "gravitational", "orbit", "escape velocity", "kepler", "satellite"]},
+      {"name": "Properties of Matter and Fluid Mechanics", "coarse": "Matter, fluids, oscillations & waves", "terms": ["elasticity", "young modulus", "surface tension", "viscosity", "bernoulli", "fluid", "fluid mechanics", "mechanical properties of solid", "mechanical properties", "brownian"]},
+      {"name": "Thermodynamics", "coarse": "Heat & thermodynamics", "terms": ["thermodynamics", "heat", "carnot", "entropy", "adiabatic", "isothermal", "first law", "second law", "refrigerator", "engine"]},
+      {"name": "Kinetic Theory of Gases", "coarse": "Heat & thermodynamics", "terms": ["kinetic theory", "ideal gas", "rms speed", "mean free path"]},
+      {"name": "Oscillations and Waves", "coarse": "Matter, fluids, oscillations & waves", "terms": ["oscillation", "shm", "simple harmonic", "pendulum", "forced oscillation", "resonance", "wave motion", "doppler", "standing wave", "sound wave"]},
+      {"name": "Electrostatics", "coarse": "Electricity & magnetism", "terms": ["electrostat", "electric charges", "coulomb", "gauss", "electric flux", "dipole", "capacitor", "capacitance", "dielectric", "permittivity", "potential energy charge"]},
+      {"name": "Current Electricity", "coarse": "Electricity & magnetism", "terms": ["current electricity", "ohm", "kirchhoff", "wheatstone", "potentiometer", "meter bridge", "resistivity", "network analysis", "voltmeter", "ammeter"]},
+      {"name": "Magnetic Effects of Current and Magnetism", "coarse": "Electricity & magnetism", "terms": ["magnetic field", "biot savart", "ampere", "moving charge", "force on conductor", "torque coil", "galvanometer", "earth magnet", "magnetic effect", "magnetism"]},
+      {"name": "Electromagnetic Induction and Alternating Current", "coarse": "Electricity & magnetism", "terms": ["induction", "faraday", "lenz", "self inductance", "mutual inductance", "ac circuit", "alternating current", "lcr", "transformer"]},
+      {"name": "Electromagnetic Waves", "coarse": "Electricity & magnetism", "terms": ["electromagnetic wave", "displacement current", "em wave"]},
+      {"name": "Ray Optics and Optical Instruments", "coarse": "Optics", "terms": ["ray optics", "lens", "mirror", "refraction", "prism deviation", "optical instrument", "magnifying", "compound microscope"]},
+      {"name": "Wave Optics", "coarse": "Optics", "terms": ["interference", "diffraction", "polarisation", "polarized", "polariser", "polarizer", "malus", "young double slit", "ydse", "wave optics"]},
+      {"name": "Dual Nature of Matter and Radiation", "coarse": "Modern physics & electronics", "terms": ["photoelectric", "de broglie", "matter wave", "compton", "photon", "x-ray", "dual nature"]},
+      {"name": "Atoms and Nuclei", "coarse": "Modern physics & electronics", "terms": ["bohr model", "hydrogen spectrum", "nuclear", "nuclear physics", "radioactivity", "binding energy", "alpha decay", "half life", "fission fusion", "atomic model", "modern physics"]},
+      {"name": "Semiconductor Electronics", "coarse": "Modern physics & electronics", "terms": ["semiconductor", "semiconductor device", "semiconductor electronic", "diode", "transistor", "logic gate", "and gate", "or gate", "not gate"]},
+      {"name": "Mathematical Methods in Physics", "coarse": "Mechanics & gravitation", "terms": ["mathematical methods", "error analysis", "vector algebra physics", "dimensional analysis"]},
+      {"name": "Communication Systems", "coarse": "Modern physics & electronics", "terms": ["communication", "bandwidth", "modulation amplitude", "carrier frequency"]}
+    ],
+    "chemistry": [
+      {"name": "Some Basic Concepts of Chemistry", "coarse": "Stoichiometry, atomic structure & bonding", "terms": ["mole concept", "some basic concepts", "molar mass", "stoichiometry", "percent composition", "empirical formula", "limiting reagent", "ppm"]},
+      {"name": "Atomic Structure", "coarse": "Stoichiometry, atomic structure & bonding", "terms": ["atomic structure", "bohr", "quantum number", "orbital", "de broglie", "photoelectric chemistry", "spectrum"]},
+      {"name": "Chemical Bonding and Molecular Structure", "coarse": "Stoichiometry, atomic structure & bonding", "terms": ["bond", "ionic", "covalent", "vsepr", "hybridization", "molecular orbital", "hydrogen bonding", "lattice energy"]},
+      {"name": "States of Matter and Solutions", "coarse": "States of matter & solutions", "terms": ["gas law", "states of matter", "vapour pressure", "vapor pressure", "colligative", "osmotic", "ideal solution", "raoult", "solution", "molality", "molarity"]},
+      {"name": "Thermodynamics and Thermochemistry", "coarse": "Thermodynamics & chemical equilibrium", "terms": ["enthalpy", "entropy", "gibbs", "hess", "bond enthalpy", "calorimetry", "thermodynamics", "thermochemistry"]},
+      {"name": "Chemical Equilibrium", "coarse": "Thermodynamics & chemical equilibrium", "terms": ["equilibrium constant", "chemical equilibrium", "le chatelier", "ionic equilibrium", "ph", "buffer", "solubility product"]},
+      {"name": "Redox and Electrochemistry", "coarse": "Electrochemistry & chemical kinetics", "terms": ["redox", "electrode", "electrochemical cell", "nernst", "electrolysis", "conductance"]},
+      {"name": "Chemical Kinetics", "coarse": "Electrochemistry & chemical kinetics", "terms": ["rate law", "chemical kinetics", "order of reaction", "activation energy", "arrhenius"]},
+      {"name": "Surface Chemistry and Solid State", "coarse": "Solid state & surface chemistry", "terms": ["adsorption", "colloid", "catalyst", "crystal lattice", "defect packing", "surface chemistry", "solid state"]},
+      {"name": "Periodic Properties, Hydrogen and s-Block", "coarse": "Inorganic chemistry", "terms": ["periodicity", "periodic propert", "ionization trend", "alkali", "alkaline earth", "s-block", "s block", "hydrogen chemistry"]},
+      {"name": "p-Block Elements", "coarse": "Inorganic chemistry", "terms": ["p block", "p-block", "boron family", "carbon family", "oxygen family", "halogen group", "nitrogen family", "noble gas"]},
+      {"name": "Transition Elements and Coordination Compounds", "coarse": "Inorganic chemistry", "terms": ["d block", "d-block", "f block", "f-block", "transition metal", "coordination compound", "ligand", "crystal field"]},
+      {"name": "General Organic Chemistry", "coarse": "Organic — principles, classification & hydrocarbons", "terms": ["nomenclature", "isomer", "inductive effect", "resonance carbocation", "reaction intermediate", "general organic", "aromatic", "benzene", "electrophil", "nucleophil"]},
+      {"name": "Organic Compounds containing Halogens, Oxygen or Nitrogen", "coarse": "Organic — functional groups to everyday life & biomolecules", "terms": ["alcohol", "ether", "aldehyde", "ketone", "carboxylic", "amide", "amine", "cyanide", "haloalkane", "alkyl halide", "phenol", "haloarene"]},
+      {"name": "Hydrocarbons", "coarse": "Organic — principles, classification & hydrocarbons", "terms": ["alkane", "alkene", "alkyne", "hydrocarbon", "saturated hydrocarbon", "unsaturated hydrocarbon"]},
+      {"name": "Biomolecules, Polymers and Chemistry in Everyday Life", "coarse": "Organic — functional groups to everyday life & biomolecules", "terms": ["biomolecule", "protein", "carbohydrate", "amino acid", "polymer", "drug", "soap"]}
+    ],
+    "mathematics": [
+      {"name": "Sets, Relations and Functions", "coarse": "Sets, relations & functions", "terms": ["sets", "relation", "function", "one-one", "onto", "domain", "range", "inverse function", "greatest integer", "floor function", "modulus function", "logarithm", "exponential function", "piecewise"]},
+      {"name": "Complex Numbers and Quadratic Equations", "coarse": "Complex numbers, quadratics, inequalities & induction", "terms": ["complex number", "quadratic equation", "quadratic", "roots of equation", "argand", "de moivre", "discriminant", "vieta", "polynomial roots"]},
+      {"name": "Matrices and Determinants", "coarse": "Matrices & determinants", "terms": ["matrix", "matrices", "determinant", "cramer", "adjoint", "singular matrix", "rank of matrix"]},
+      {"name": "Permutations, Combinations and Binomial Theorem", "coarse": "Permutations, combinations & binomial theorem", "terms": ["permutation", "combination", "binomial coefficient", "binomial theorem", "pascal", "multinomial"]},
+      {"name": "Sequences and Series", "coarse": "Sequences & series", "terms": ["sequences and series", "arithmetic progression", "geometric progression", "arithmetic series", "geometric series", "ap gp", "harmonic progression", "telescoping", "sigma notation", "sum of series"]},
+      {"name": "Limit, Continuity and Differentiability", "coarse": "Differential calculus", "terms": ["limit", "continuity", "differentiability", "differentiab", "l hopital", "lhospital", "chain rule", "sandwich theorem", "squeeze theorem"]},
+      {"name": "Application of Derivatives", "coarse": "Differential calculus", "terms": ["maxima", "minima", "monotonic", "tangent", "normal", "rate of change", "increasing decreasing"]},
+      {"name": "Indefinite and Definite Integration", "coarse": "Integral calculus & differential equations", "terms": ["integration", "integral", "antiderivative", "substitution", "by parts", "definite integral", "improper integral", "area under"]},
+      {"name": "Differential Equations", "coarse": "Integral calculus & differential equations", "terms": ["differential equation", "first order differential", "order degree", "variable separable", "homogeneous ode", "linear ode", "ode", "integrating factor"]},
+      {"name": "Coordinate Geometry — Straight Lines and Circles", "coarse": "Coordinate geometry — lines, circles & conics", "terms": ["straight line", "slope", "circle equation", "tangent to circle", "chord", "coordinate geometry"]},
+      {"name": "Conic Sections", "coarse": "Coordinate geometry — lines, circles & conics", "terms": ["parabola", "ellipse", "hyperbola", "conic section", "conic", "latus rectum", "focus", "directrix", "eccentricity"]},
+      {"name": "Three-dimensional Geometry", "coarse": "Three-dimensional geometry & vectors", "terms": ["3-d geometry", "three dimensional", "line in space", "plane equation", "shortest distance", "skew lines", "direction cosine", "direction ratio"]},
+      {"name": "Vector Algebra", "coarse": "Three-dimensional geometry & vectors", "terms": ["vector algebra", "scalar product", "dot product", "cross product", "scalar triple product", "vector projection"]},
+      {"name": "Probability and Statistics", "coarse": "Probability, statistics & mathematical reasoning", "terms": ["probability", "conditional probability", "bayes", "bernoulli", "binomial distribution", "random variable", "mean variance", "standard deviation", "statistics"]},
+      {"name": "Mathematical Reasoning and Boolean Logic", "coarse": "Probability, statistics & mathematical reasoning", "terms": ["mathematical reasoning", "statement converse", "contrapositive", "tautology", "logical equivalence"]},
+      {"name": "Trigonometry and Inverse Trigonometric Functions", "coarse": "Trigonometry, inverse trig & heights/distances", "terms": ["sine rule", "cosine rule", "napier", "triangle area", "trigonometric identity", "inverse trigonometric", "inverse trig", "trigonometry", "trigonometric equation"]},
+      {"name": "Solutions of Triangles, Heights and Distances", "coarse": "Trigonometry, inverse trig & heights/distances", "terms": ["height and distance", "height distance", "angle of elevation", "angle of depression"]},
+      {"name": "Inequalities", "coarse": "Complex numbers, quadratics, inequalities & induction", "terms": ["inequality", "inequalities", "absolute value", "modulus inequality"]},
+      {"name": "Mathematical Induction", "coarse": "Complex numbers, quadratics, inequalities & induction", "terms": ["mathematical induction"]}
+    ]
+  }
+}

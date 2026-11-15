@@ -1,0 +1,3 @@
+Optional dependencies for embeddings (sentence-transformers) and numeric vector files:
+numpy>=1.24
+sentence-transformers>=2.2; python_version >= "3.10"
