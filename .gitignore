@@ -53,3 +53,9 @@ app/tmp/
 _tmp_*
 # Third-party research papers (PDF/XML full texts); summaries are committed.
 research/evidence/**/papers/
+
+# Local-only: third-party transcript fetcher and internal notes (not published)
+scripts/build_manifest_and_fetch.py
+scripts/report_manifest_coverage.py
+scripts/transliterate_transcripts_roman.py
+IMPLEMENTATION_WORKSTREAMS.md
