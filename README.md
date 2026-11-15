@@ -109,7 +109,7 @@ Design documents:
 - [`PLAN.md`](PLAN.md): vision, the four pillars, pedagogy and the picker objective.
 - [`UI.md`](UI.md): the "question is sacred" interaction design.
 - [`PROJECT_REPLAN.md`](PROJECT_REPLAN.md): the private-pilot plan, launch gates and metrics.
-- [`IMPLEMENTATION_WORKSTREAMS.md`](IMPLEMENTATION_WORKSTREAMS.md) and [`CHANGELOG.md`](CHANGELOG.md).
+- [`CHANGELOG.md`](CHANGELOG.md).
 
 ---
 
