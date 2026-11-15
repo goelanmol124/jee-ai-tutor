@@ -27,7 +27,7 @@ const ALLOW_DEV_FALLBACK =
   && String(import.meta.env.VITE_PILOT_ALLOW_DEV_FALLBACK ?? '1') === '1';
 
 const SESSION_TOKEN_KEY = 'al_pilot_session_token_v1';
-const STUDENT_ID_KEY = 'al_pilot_student_id_v1';
+const STUDENT_ID_KEY = 'al_pilot_student_id_v1'; // gitleaks:allow (localStorage key name, not a secret)
 
 export interface JoinRequest {
   inviteCode: string;
@@ -308,7 +308,7 @@ export async function pilotDispute(payload: DisputePayload): Promise<{ ok: boole
     if (ALLOW_DEV_FALLBACK) {
       console.warn('[pilotApi] DEV FALLBACK: dispute stored locally');
       try {
-        const key = 'al_pilot_disputes_v1';
+        const key = 'al_pilot_disputes_v1'; // gitleaks:allow (localStorage key name)
         const prev = JSON.parse(localStorage.getItem(key) ?? '[]') as DisputePayload[];
         prev.push(payload);
         localStorage.setItem(key, JSON.stringify(prev.slice(-50)));
